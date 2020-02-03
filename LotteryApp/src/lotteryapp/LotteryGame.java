@@ -15,7 +15,6 @@ public class LotteryGame {
         int [][] userNumbers;
         boolean withinRange;
         int n;
-        int test;
         boolean userNumberDuplicate;
         
         
