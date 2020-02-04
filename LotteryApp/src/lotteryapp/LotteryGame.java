@@ -14,6 +14,8 @@ public class LotteryGame {
         //int [] secretNumbers;
         int [][] userNumbers;
         boolean withinRange;
+        int[] secretNumbers;
+        int matches;
         
         
         Scanner input = new Scanner(System.in);
@@ -27,6 +29,14 @@ public class LotteryGame {
             withinRange = myLott.getWithinRange();
         }
         while(withinRange == false);
+        
+        
+        myLott.createSecretNumbers();
+        secretNumbers = myLott.getSecretNumbers();
+
+        for(int i = 0; i < secretNumbers.length; i++){          
+            System.out.print(myLott.getSecretNumbers()[i]+ " ");
+        }
         
      
         //initialize user's input with number of lines (rows) and 6 numbers per line(column)
@@ -56,7 +66,13 @@ public class LotteryGame {
             }
         }
         myLott.setUserNumbers(userNumbers);
+        myLott.checkMatches();
         
+        matches = myLott.getMatches();
+        
+      
+        
+        System.out.println("Matches:" +matches);
         
         
         for(int i = 0; i < userNumbers.length; i++){
