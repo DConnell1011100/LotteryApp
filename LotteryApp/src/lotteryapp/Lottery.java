@@ -13,7 +13,7 @@ public class Lottery {
     private int[][] userNumbers;
     private int noOfLines;
     private boolean withinRange;
-    private boolean userNumberDuplicate = false;
+    private boolean duplicateInput;
 
     public void setNoOfLines(int noOfLines) {
         if (noOfLines >= 1 && noOfLines <= 3) {
@@ -25,15 +25,10 @@ public class Lottery {
         }
     }
 
-    public void setUserNumbers(int number) {
-        userNumbers = new int[noOfLines][6];
-
+    public void setUserNumbers(int [][] numbers) {
+        userNumbers = numbers;
     }
-
-    public void withinRange(int number) {
-        withinRange = number >= 1 && number <= 40;
-    }
-
+    
     public void createSecretNumbers() {
         secretNumbers = new int[6];
         Random myRan = new Random();
@@ -51,19 +46,10 @@ public class Lottery {
                 }
             }
         }
-
     }
 
-    public void checkDuplicateInput(int currentLinePosition, int currentNumberPosition, int currentNumberValue) {
-        for (int i = 0; i < currentLinePosition; i++) {
-            for (int j = 0; i < currentNumberPosition; i++) {
-                if (currentNumberValue != userNumbers[i][j]) {
-                    userNumberDuplicate = false;
-                } else {
-                    userNumberDuplicate = true;
-                }
-            }
-        }
+    public void withinRange(int number) {
+        withinRange = number >= 1 && number <= 40;
     }
 
     public boolean getWithinRange() {
@@ -83,7 +69,7 @@ public class Lottery {
     }
 
     public boolean getUserNumberDuplicate() {
-        return userNumberDuplicate;
+        return duplicateInput;
     }
 
 }
