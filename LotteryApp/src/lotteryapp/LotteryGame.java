@@ -16,6 +16,7 @@ public class LotteryGame {
         boolean withinRange;
         int[] secretNumbers;
         int matches;
+        boolean duplicate;
         
         
         Scanner input = new Scanner(System.in);
@@ -60,19 +61,28 @@ public class LotteryGame {
                     System.out.println("Not a number between 1-40");
                     j--;
                 }
-                else{
-                    userNumbers[i][j] = currentNumber;
+                else if(withinRange == true){
+                    if(j == 0){
+                        myLott.setFirstNumber(i, currentNumber);
+                    }
+                    else{
+                        myLott.setUserNumbers(i, currentNumber);
+                        duplicate = myLott.getUserNumberDuplicate();
+                        if(duplicate == true){
+                            j--;
+                            System.out.println("Duplicate Number");
+                        }
+                    }
                 }
             }
         }
-        myLott.setUserNumbers(userNumbers);
-        myLott.checkMatches();
+        //myLott.checkMatches();
         
-        matches = myLott.getMatches();
+        //matches = myLott.getMatches();
         
       
         
-        System.out.println("Matches:" +matches);
+        //System.out.println("Matches:" +matches);
         
         
         for(int i = 0; i < userNumbers.length; i++){
