@@ -13,7 +13,7 @@ public class Lottery {
     private int[][] userNumbers;
     private int noOfLines;
     private boolean withinRange;
-    private boolean duplicateInput;
+    private int duplicateInput;
     private int matches;
 
     public void setNoOfLines(int noOfLines) {
@@ -26,28 +26,12 @@ public class Lottery {
         }
     }
     
-    //method to call to set the first number of each line
-    public void setFirstNumber(int line, int number){
-        userNumbers = new int[getNoOfLines()][6];
-        userNumbers[line][0] = number;
-    }
+    
     //call a new set method for the rest of the numbers which will compare the number passed in to the other numbers in the line
-    public void setUserNumbers(int lineNo, int number) {
+    public void setUserNumbers(int[][] numbers) {
         //start the count at 1 because we already have the first number
-        for(int i = 1; i < userNumbers.length; i++){
-            int n = number;
-            int line = lineNo;
-            for(int j = 0; j < i; j++){
-                if(n == userNumbers[line][j]){
-                    duplicateInput = true;
-                    i--;
-                }
-                else if(n != userNumbers[line][j]){
-                    userNumbers[line][i] = n;
-                    duplicateInput = false;
-                }
-            }
-        }
+        userNumbers = new int[getNoOfLines()][6];
+        userNumbers = numbers;
     }
     
     public void createSecretNumbers() {
@@ -111,7 +95,7 @@ public class Lottery {
         return secretNumbers;
     }
 
-    public boolean getDuplicateInput() {
+    public int getDuplicateInput() {
         return duplicateInput;
     }
 

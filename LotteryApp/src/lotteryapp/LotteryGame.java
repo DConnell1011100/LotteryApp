@@ -14,9 +14,12 @@ public class LotteryGame {
         //int [] secretNumbers;
         int [][] userNumbers;
         boolean withinRange;
+        int noOfLines;
         int[] secretNumbers;
         int matches;
-        boolean duplicate;
+        int duplicate;
+        int currentLineNo;
+        int currentNumber;
         
         
         Scanner input = new Scanner(System.in);
@@ -27,7 +30,8 @@ public class LotteryGame {
         
         do{
             System.out.println("How many lines would you like to play?");
-            myLott.setNoOfLines(input.nextInt());
+            noOfLines = input.nextInt();
+            myLott.setNoOfLines(noOfLines);
             withinRange = myLott.getWithinRange();
         }
         while(withinRange == false);
@@ -42,41 +46,46 @@ public class LotteryGame {
         
      
         //initialize user's input with number of lines (rows) and 6 numbers per line(column)
-        userNumbers = new int[myLott.getNoOfLines()][6];
-        
+        userNumbers = new int[noOfLines][6];
         //get user input 
-        for(int i = 0; i < userNumbers.length; i++){
-            for(int j = 0; j < userNumbers[i].length; j++){
-                //declare a variable to store the currentNumber
-                int currentNumber;
+        //set the current line number to 0 to start.
+        currentLineNo = 0;
+        do{
+            System.out.println("Entry for line " + (currentLineNo+1) + " number 1: ");
+            currentNumber = input.nextInt();
+            userNumbers[currentLineNo][0] = currentNumber;
+            for(int i = 1; i < 6;){
+                duplicate = 1;
                 //ask the user input
-                System.out.println("Entry for line " + (i+1) + " number " +(j+1) + ": ");
-                //store the input in currentVariable
+                System.out.println("Entry for line " + (currentLineNo+1) + " number " +(i+1) + ": ");
                 currentNumber = input.nextInt();
-                //check if number is within range
-                myLott.withinRange(currentNumber);
-                //get the result of that check
-                withinRange = myLott.getWithinRange();
-                //if withinRange if false, print out of range number
-                if(withinRange == false){
-                    System.out.println("Not a number between 1-40");
-                    j--;
-                }
-                else if(withinRange == true){
-                    if(j == 0){
-                        myLott.setFirstNumber(i, currentNumber);
+                for(int j = 0; j < i; j++){
+                    //check if number is within range
+                    myLott.withinRange(currentNumber);
+                    //get the result of that check
+                    withinRange = myLott.getWithinRange();
+                    //if withinRange if false, print out of range number
+                    if(withinRange == false){
+                        System.out.println("Not a number between 1-40");
+                        j--;
                     }
-                    else{
-                        myLott.setUserNumbers(i, currentNumber);
-                        duplicate = myLott.getDuplicateInput();
-                        if(duplicate == true){
-                            j--;
-                            System.out.println("Duplicate");
+                    else if(withinRange == true){
+                        if(currentNumber == userNumbers[currentLineNo][j]){
+                            duplicate = 0;
+                            System.out.println("Duplicate Number");
+                            break;
                         }
                     }
+                }//end of j loop
+                if(duplicate == 1){
+                    userNumbers[currentLineNo][i] = currentNumber;
+                    i++;
                 }
-            }
-        }
+            }//end of i loop
+            currentLineNo++;
+        }while(currentLineNo < myLott.getNoOfLines());//stop repeating when all line numbers are filled
+            
+            
         //myLott.checkMatches();
         
         //matches = myLott.getMatches();
@@ -89,7 +98,7 @@ public class LotteryGame {
         for(int i = 0; i < userNumbers.length; i++){
             System.out.println(" ");
             for(int j = 0; j < userNumbers[i].length; j++){
-                System.out.print(myLott.getUserNumbers()[i][j]+ " ");
+                System.out.print(userNumbers[i][j]+ " ");
             }
         }
     }
