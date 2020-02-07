@@ -23,7 +23,8 @@ public class LotteryGame {
         
         Lottery myLott = new Lottery();
         
-        //ask home many lines the user wants to play
+        //ask how many lines the user wants to play
+        
         do{
             System.out.println("How many lines would you like to play?");
             myLott.setNoOfLines(input.nextInt());
@@ -67,10 +68,10 @@ public class LotteryGame {
                     }
                     else{
                         myLott.setUserNumbers(i, currentNumber);
-                        duplicate = myLott.getUserNumberDuplicate();
+                        duplicate = myLott.getDuplicateInput();
                         if(duplicate == true){
                             j--;
-                            System.out.println("Duplicate Number");
+                            System.out.println("Duplicate");
                         }
                     }
                 }

@@ -56,18 +56,23 @@ public class Lottery {
         int n = myRan.nextInt(40);
         n += 1;
         secretNumbers[0] = n;
-        for (int i = 1; i < 6; i++) {
+        int duplicate;
+        for (int i = 1; i < secretNumbers.length;) {
+            duplicate = 1;
             n = myRan.nextInt(40);
             n += 1;
             for (int j = 0; j < i; j++) {
-                if (n != secretNumbers[j]) {
-                    secretNumbers[i] = n;
-                } else {
-                    i--;
-                }
+                if (n == secretNumbers[j]) {
+                    duplicate = 0;
+                    break;
+                } //end of if
+            }//end of inner loop
+            if(duplicate == 1){
+                secretNumbers[i] = n;
+                i++;
             }
-        }
-    }
+        }//end of outer loop
+    }//end of method
 
     
     
@@ -106,7 +111,7 @@ public class Lottery {
         return secretNumbers;
     }
 
-    public boolean getUserNumberDuplicate() {
+    public boolean getDuplicateInput() {
         return duplicateInput;
     }
 
