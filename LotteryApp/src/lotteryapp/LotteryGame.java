@@ -17,7 +17,7 @@ public class LotteryGame {
         int noOfLines;
         int[] secretNumbers;
         int matches;
-        int duplicate;
+        int invalidEntry;
         int currentLineNo;
         int currentNumber;
         
@@ -51,11 +51,20 @@ public class LotteryGame {
         //set the current line number to 0 to start.
         currentLineNo = 0;
         do{
+            do{
             System.out.println("Entry for line " + (currentLineNo+1) + " number 1: ");
             currentNumber = input.nextInt();
-            userNumbers[currentLineNo][0] = currentNumber;
+            myLott.withinRange(currentNumber);
+            withinRange = myLott.getWithinRange();
+            if(withinRange == true){
+                userNumbers[currentLineNo][0] = currentNumber;
+            }
+            else{
+                System.out.println("Not a number between 1-40");
+            }
+            }while(withinRange == false);
             for(int i = 1; i < 6;){
-                duplicate = 1;
+                invalidEntry = 1;
                 //ask the user input
                 System.out.println("Entry for line " + (currentLineNo+1) + " number " +(i+1) + ": ");
                 currentNumber = input.nextInt();
@@ -67,17 +76,18 @@ public class LotteryGame {
                     //if withinRange if false, print out of range number
                     if(withinRange == false){
                         System.out.println("Not a number between 1-40");
-                        j--;
+                        invalidEntry = 0;
+                        break;
                     }
                     else if(withinRange == true){
                         if(currentNumber == userNumbers[currentLineNo][j]){
-                            duplicate = 0;
+                            invalidEntry = 0;
                             System.out.println("Duplicate Number");
                             break;
                         }
                     }
                 }//end of j loop
-                if(duplicate == 1){
+                if(invalidEntry == 1){
                     userNumbers[currentLineNo][i] = currentNumber;
                     i++;
                 }
