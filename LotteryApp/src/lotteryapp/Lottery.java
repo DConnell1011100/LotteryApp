@@ -14,7 +14,7 @@ public class Lottery {
     private int noOfLines;
     private boolean withinRange;
     private int duplicateInput;
-    private int matches;
+    private int matches[][];
 
     public void setNoOfLines(int noOfLines) {
         if (noOfLines >= 1 && noOfLines <= 3) {
@@ -58,27 +58,31 @@ public class Lottery {
         }//end of outer loop
     }//end of method
 
-    
-    
     public void checkMatches(){
-        matches = 0;
-        for(int i = 0; i < secretNumbers.length; i++){
-            for(int j = 0; j < userNumbers.length; j++){
-                for(int k = 0; k < userNumbers[j].length; k++){
-                    if(userNumbers[j][k] == secretNumbers[i]){
-                        matches++;
+        int counter = 0;
+        do{
+            matches = new int [noOfLines][1];
+            for(int i = 0; i < secretNumbers.length; i++){
+                for(int j = 0; j < userNumbers.length; j++){
+                    for(int k = 0; k < userNumbers[j].length; k++){
+                        if(userNumbers[j][k] == secretNumbers[i]){
+                            matches[counter][0] += 1;
+                        }
                     }
                 }
             }
-        }
+            counter++;
+        }while(counter < getNoOfLines());
     }
-    public int getMatches(){
-        return matches;
-    }
+    
     public void withinRange(int number) {
         withinRange = number >= 1 && number <= 40;
     }
-
+    
+    public int [][] getMatches(){
+        return matches;
+    }
+    
     public boolean getWithinRange() {
         return withinRange;
     }

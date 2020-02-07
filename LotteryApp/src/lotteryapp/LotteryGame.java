@@ -16,7 +16,7 @@ public class LotteryGame {
         boolean withinRange;
         int noOfLines;
         int[] secretNumbers;
-        int matches;
+        int matches[][];
         int invalidEntry;
         int currentLineNo;
         int currentNumber;
@@ -94,21 +94,23 @@ public class LotteryGame {
             }//end of i loop
             currentLineNo++;
         }while(currentLineNo < myLott.getNoOfLines());//stop repeating when all line numbers are filled
+        
+        myLott.setUserNumbers(userNumbers);
+        
             
-            
-        //myLott.checkMatches();
+        myLott.checkMatches();
         
-        //matches = myLott.getMatches();
+        matches = myLott.getMatches();
         
-      
-        
-        //System.out.println("Matches:" +matches);
-        
-        
+        for(int i = 0; i < matches.length; i++){
+            for(int j = 0; j < matches[i].length; j++){
+                System.out.println("Matches on line " + (i+1) + ": " + matches[i][j]);
+            }
+        }
         for(int i = 0; i < userNumbers.length; i++){
             System.out.println(" ");
             for(int j = 0; j < userNumbers[i].length; j++){
-                System.out.print(userNumbers[i][j]+ " ");
+                System.out.print(myLott.getUserNumbers()[i][j]+ " ");
             }
         }
     }
