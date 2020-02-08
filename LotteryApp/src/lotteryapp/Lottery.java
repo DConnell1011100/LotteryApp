@@ -15,6 +15,7 @@ public class Lottery {
     private boolean withinRange;
     private int duplicateInput;
     private int matches[][];
+    private int winningsPerLine[][];
 
     public void setNoOfLines(int noOfLines) {
         if (noOfLines >= 1 && noOfLines <= 3) {
@@ -74,6 +75,34 @@ public class Lottery {
             counter++;
         }while(counter < getNoOfLines());
     }
+    
+    public void calculateWinnings(){
+        int counter = 0;
+        do{
+            winningsPerLine = new int [counter][1];
+            for(int i = 0; i < matches.length; i++){
+                for(int j = 0; j < matches[i].length; j++){
+                    if(matches[i][j] == 3){
+                        winningsPerLine[i][j] = 125;
+                    }
+                    else if(matches[i][j]==4){
+                        winningsPerLine[i][j] = 300;
+                    }
+                    else if(matches[i][j]==5){
+                        winningsPerLine[i][j] = 1500;
+                    }
+                    else if(matches[i][j]==6){
+                        winningsPerLine[i][j] = 10000;
+                    }
+                }
+            }
+        }while(counter < getNoOfLines());
+    }
+    
+    public int [][] getWinningsPerLine(){
+        return winningsPerLine;
+    }
+    
     
     public void withinRange(int number) {
         withinRange = number >= 1 && number <= 40;
