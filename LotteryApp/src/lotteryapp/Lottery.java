@@ -65,10 +65,8 @@ public class Lottery {
             matches = new int [noOfLines][1];
             for(int i = 0; i < secretNumbers.length; i++){
                 for(int j = 0; j < userNumbers.length; j++){
-                    for(int k = 0; k < userNumbers[j].length; k++){
-                        if(userNumbers[j][k] == secretNumbers[i]){
-                            matches[counter][0] += 1;
-                        }
+                    if(userNumbers[counter][j] == secretNumbers[i]){
+                        matches[counter][0] += 1;
                     }
                 }
             }
