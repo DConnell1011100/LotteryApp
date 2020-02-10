@@ -35,6 +35,10 @@ public class Lottery {
         userNumbers = numbers;
     }
     
+    public void setMatches(int match, int linePosition){
+        matches[linePosition][0] = match;
+    }
+    
     public void createSecretNumbers() {
         secretNumbers = new int[6];
         Random myRan = new Random();
@@ -60,15 +64,17 @@ public class Lottery {
     }//end of method
 
     public void checkMatches(){
+        matches = new int [noOfLines][1];
         int counter = 0;
         do{
-            matches = new int [noOfLines][1];
-            for(int i = 0; i < secretNumbers.length; i++){
-                for(int j = 0; j < userNumbers.length; j++){
-                    if(userNumbers[counter][j] == secretNumbers[i]){
-                        matches[counter][0] += 1;
+            int match = 0;
+            for(int i = 0; i < 6; i++){
+                for(int j = 0; j < 6; j++){
+                    if(userNumbers[counter][i] == secretNumbers[j]){
+                        match++;
                     }
                 }
+                setMatches(match, counter);
             }
             counter++;
         }while(counter < getNoOfLines());

@@ -104,7 +104,7 @@ public class LotteryGame {
         
         for(int i = 0; i < matches.length; i++){
             for(int j = 0; j < matches[i].length; j++){
-                System.out.println("Matches on line " + (i+1) + ": " + matches[i][j]);
+                System.out.println("Matches on line " + (i+1) + ": " + myLott.getMatches()[i][j]);
             }
         }
         for(int i = 0; i < userNumbers.length; i++){
