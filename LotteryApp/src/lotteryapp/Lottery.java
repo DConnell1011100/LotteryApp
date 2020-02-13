@@ -82,24 +82,27 @@ public class Lottery {
     
     public void calculateWinnings(){
         int counter = 0;
+        winningsPerLine = new int [getNoOfLines()][1];
+
         do{
-            winningsPerLine = new int [counter][1];
-            for(int i = 0; i < matches.length; i++){
-                for(int j = 0; j < matches[i].length; j++){
-                    if(matches[i][j] == 3){
-                        winningsPerLine[i][j] = 125;
-                    }
-                    else if(matches[i][j]==4){
-                        winningsPerLine[i][j] = 300;
-                    }
-                    else if(matches[i][j]==5){
-                        winningsPerLine[i][j] = 1500;
-                    }
-                    else if(matches[i][j]==6){
-                        winningsPerLine[i][j] = 10000;
-                    }
+            for(int i = 0; i < winningsPerLine.length; i++){
+                if(getMatches()[counter][i] == 6){
+                    winningsPerLine[counter][i] = 5000;
+                }
+                else if(getMatches()[counter][i] == 5){
+                    winningsPerLine[counter][i] = 1500;
+                }
+                else if(getMatches()[counter][i] == 4){
+                    winningsPerLine[counter][i] = 300;
+                }
+                else if(getMatches()[counter][i] == 3){
+                    winningsPerLine[counter][i] = 125;
+                }
+                else{
+                    winningsPerLine[counter][i] = 0;
                 }
             }
+            counter++;
         }while(counter < getNoOfLines());
     }
     

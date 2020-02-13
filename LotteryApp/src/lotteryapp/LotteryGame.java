@@ -21,7 +21,7 @@ public class LotteryGame {
         int currentLineNo;
         int currentNumber;
         boolean playAgain;
-        
+        int [][] winningsPerLine;
         
         Scanner input = new Scanner(System.in);
         
@@ -41,10 +41,10 @@ public class LotteryGame {
             myLott.createSecretNumbers();
             secretNumbers = myLott.getSecretNumbers();
 
+            System.out.print("Lottery Numbers: ");
             for(int i = 0; i < secretNumbers.length; i++){          
                 System.out.print(myLott.getSecretNumbers()[i]+ " ");
             }
-
 
             //initialize user's input with number of lines (rows) and 6 numbers per line(column)
             userNumbers = new int[noOfLines][6];
@@ -108,7 +108,22 @@ public class LotteryGame {
                     System.out.println("Matches on line " + (i+1) + ": " + myLott.getMatches()[i][j]);
                 }
             }
-            System.out.println("Do you want to play again?");
+            myLott.calculateWinnings();
+            winningsPerLine = new int[myLott.getNoOfLines()][1];
+            winningsPerLine = myLott.getWinningsPerLine();
+            secretNumbers = myLott.getSecretNumbers();
+            System.out.println("Winnings: ");
+            for(int i = 0; i < winningsPerLine.length; i++){
+                for(int j = 0; j < winningsPerLine[i].length; j++){
+                    System.out.println("Line "+(i+1)+ " winnings: "+ winningsPerLine[i][j]);
+                }
+            }
+            
+            System.out.print("Lottery Numbers: ");
+            for(int i = 0; i < secretNumbers.length; i++){          
+                System.out.print(myLott.getSecretNumbers()[i]+ " ");
+            }
+            System.out.println("\nDo you want to play again?");
             input.nextLine();//fix for the nextInt scanner issue
             String play = input.nextLine();
             if(play.equalsIgnoreCase("Yes") || play.equalsIgnoreCase("Y")){
