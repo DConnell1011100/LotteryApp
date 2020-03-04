@@ -88,6 +88,7 @@ public class Lottery {
             for(int i = 0; i < winningsPerLine.length; i++){
                 if(getMatches()[counter][i] == 6){
                     winningsPerLine[counter][i] = 5000;
+                    System.out.println("Congratulations, you won the lottery");
                 }
                 else if(getMatches()[counter][i] == 5){
                     winningsPerLine[counter][i] = 1500;
