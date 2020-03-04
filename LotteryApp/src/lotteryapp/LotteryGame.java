@@ -113,14 +113,13 @@ public class LotteryGame {
             winningsPerLine = new int[myLott[gameNo].getNoOfLines()][1];
             winningsPerLine = myLott[gameNo].getWinningsPerLine();
             secretNumbers = myLott[gameNo].getSecretNumbers();
-            System.out.println("Winnings: ");
             for(int i = 0; i < winningsPerLine.length; i++){
                 for(int j = 0; j < winningsPerLine[i].length; j++){
                     System.out.println("Line "+(i+1)+ " winnings: "+ winningsPerLine[i][j]);
                 }
             }
             
-            System.out.print("Lottery Numbers: ");
+            System.out.print("The winning numbers: ");
             for(int i = 0; i < secretNumbers.length; i++){          
                 System.out.print(myLott[gameNo].getSecretNumbers()[i]+ " ");
             }
