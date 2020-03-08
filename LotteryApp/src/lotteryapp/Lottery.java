@@ -15,6 +15,8 @@ public class Lottery {
     private int duplicateInput;
     private int matches[][];
     private int winningsPerLine[][];
+    private int totalWinningLines;
+    private int totalWinnings;
 
     public void setNoOfLines(int noOfLines) {
         if (noOfLines >= 1 && noOfLines <= 3) {
@@ -79,8 +81,12 @@ public class Lottery {
     public void calculateWinnings() {
         int counter = 0;
         winningsPerLine = new int[getNoOfLines()][1];
-
+        totalWinningLines = 0;
+        totalWinnings = 0;
         do {
+            if (getMatches()[counter][0] >= 3) {
+                totalWinningLines++;
+            }
             if (getMatches()[counter][0] == 6) {
                 winningsPerLine[counter][0] = 5000;
                 System.out.println("Congratulations, you won the lottery");
@@ -93,9 +99,13 @@ public class Lottery {
             } else {
                 winningsPerLine[counter][0] = 0;
             }
-
+            totalWinnings += winningsPerLine[counter][0];
             counter++;
         } while (counter < getNoOfLines());
+    }
+
+    public int getTotalWinnings() {
+        return totalWinnings;
     }
 
     public int[][] getWinningsPerLine() {
@@ -128,6 +138,10 @@ public class Lottery {
 
     public int getDuplicateInput() {
         return duplicateInput;
+    }
+
+    public int getTotalWinningLines() {
+        return totalWinningLines;
     }
 
 }

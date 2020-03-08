@@ -22,10 +22,14 @@ public class LotteryGame {
         int currentNumber;
         boolean playAgain;
         int[][] winningsPerLine;
+        int totalWinnings = 0;
         Lottery myLott[] = new Lottery[100];
+        Lottery game = new Lottery();
         Scanner input = new Scanner(System.in);
 
         int gameNo = 0;
+        int totalNumberOfLines = 0;
+        int totalWinningLines = 0;
         do {
             myLott[gameNo] = new Lottery();
 
@@ -97,7 +101,10 @@ public class LotteryGame {
                     System.out.println("Matches on line " + (i + 1) + ": " + myLott[gameNo].getMatches()[i][j]);
                 }
             }
+            
             myLott[gameNo].calculateWinnings();
+            totalWinningLines += myLott[gameNo].getTotalWinningLines();
+            totalWinnings += myLott[gameNo].getTotalWinnings();
             winningsPerLine = new int[myLott[gameNo].getNoOfLines()][1];
             winningsPerLine = myLott[gameNo].getWinningsPerLine();
             secretNumbers = myLott[gameNo].getSecretNumbers();
@@ -122,7 +129,20 @@ public class LotteryGame {
             }
             gameNo++;
         } while (playAgain == true);
-
+        //calculate total no of lines played
+        for(int i = 0; myLott[i] != null; i++){
+            totalNumberOfLines += myLott[i].getNoOfLines();
+        }
+        System.out.println(" ");
+        System.out.println("GAME SUMMARY: ");
+        System.out.println("-----------------");
+        System.out.println("Total Lines: " + totalNumberOfLines);
+        System.out.println("Total winning lines: " +totalWinningLines);
+        System.out.println("Total winnings: " +totalWinnings);
+        System.out.println("Total Number of Games: " +gameNo);
+        System.out.println("Average Winnings Per Game: " +((double)totalWinnings/gameNo));
+        System.out.println("-----------------");
+        System.out.println(" ");
+        
     }
-
 }
