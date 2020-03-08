@@ -8,7 +8,6 @@ import java.util.Random;
  */
 public class Lottery {
 
-    //instance variables
     private int[] secretNumbers;
     private int[][] userNumbers;
     private int noOfLines;
@@ -26,19 +25,16 @@ public class Lottery {
             withinRange = false;
         }
     }
-    
-    
-    //call a new set method for the rest of the numbers which will compare the number passed in to the other numbers in the line
+
     public void setUserNumbers(int[][] numbers) {
-        //start the count at 1 because we already have the first number
         userNumbers = new int[getNoOfLines()][6];
         userNumbers = numbers;
     }
-    
-    public void setMatches(int match, int linePosition){
+
+    public void setMatches(int match, int linePosition) {
         matches[linePosition][0] = match;
     }
-    
+
     public void createSecretNumbers() {
         secretNumbers = new int[6];
         Random myRan = new Random();
@@ -54,71 +50,66 @@ public class Lottery {
                 if (n == secretNumbers[j]) {
                     duplicate = 0;
                     break;
-                } //end of if
-            }//end of inner loop
-            if(duplicate == 1){
+                }
+            }
+            if (duplicate == 1) {
                 secretNumbers[i] = n;
                 i++;
             }
-        }//end of outer loop
-    }//end of method
+        }
+    }
 
-    public void checkMatches(){
-        matches = new int [noOfLines][1];
+    public void checkMatches() {
+        matches = new int[noOfLines][1];
         int counter = 0;
-        do{
+        do {
             int match = 0;
-            for(int i = 0; i < 6; i++){
-                for(int j = 0; j < 6; j++){
-                    if(userNumbers[counter][i] == secretNumbers[j]){
+            for (int i = 0; i < 6; i++) {
+                for (int j = 0; j < 6; j++) {
+                    if (userNumbers[counter][i] == secretNumbers[j]) {
                         match++;
                     }
                 }
                 setMatches(match, counter);
             }
             counter++;
-        }while(counter < getNoOfLines());
+        } while (counter < getNoOfLines());
     }
-    
-    public void calculateWinnings(){
-        int counter = 0;
-        winningsPerLine = new int [getNoOfLines()][1];
 
-        do{
-            if(getMatches()[counter][0] == 6){
+    public void calculateWinnings() {
+        int counter = 0;
+        winningsPerLine = new int[getNoOfLines()][1];
+
+        do {
+            if (getMatches()[counter][0] == 6) {
                 winningsPerLine[counter][0] = 5000;
                 System.out.println("Congratulations, you won the lottery");
-            }
-            else if(getMatches()[counter][0] == 5){
+            } else if (getMatches()[counter][0] == 5) {
                 winningsPerLine[counter][0] = 1500;
-            }
-            else if(getMatches()[counter][0] == 4){
+            } else if (getMatches()[counter][0] == 4) {
                 winningsPerLine[counter][0] = 300;
-            }
-            else if(getMatches()[counter][0] == 3){
+            } else if (getMatches()[counter][0] == 3) {
                 winningsPerLine[counter][0] = 125;
-            }
-            else{
+            } else {
                 winningsPerLine[counter][0] = 0;
             }
-         
+
             counter++;
-        }while(counter < getNoOfLines());
+        } while (counter < getNoOfLines());
     }
-    
-    public int [][] getWinningsPerLine(){
+
+    public int[][] getWinningsPerLine() {
         return winningsPerLine;
     }
-    
-    
+
     public void withinRange(int number) {
         withinRange = number >= 1 && number <= 40;
     }
-    
-    public int [][] getMatches(){
+
+    public int[][] getMatches() {
         return matches;
     }
-    
+
     public boolean getWithinRange() {
         return withinRange;
     }
