@@ -23,11 +23,9 @@ public class LotteryGame {
         boolean playAgain;
         int[][] winningsPerLine;
         Lottery myLott[] = new Lottery[100];
-        Lottery game = new Lottery();
         Scanner input = new Scanner(System.in);
 
         int gameNo = 0;
-        int totalNumberOfLines = 0;
         do {
             myLott[gameNo] = new Lottery();
 
@@ -123,9 +121,8 @@ public class LotteryGame {
                 playAgain = false;
             }
             gameNo++;
-            game.setTotalNumberOfLines(noOfLines);
         } while (playAgain == true);
-        
+
     }
 
 }

@@ -15,7 +15,6 @@ public class Lottery {
     private int duplicateInput;
     private int matches[][];
     private int winningsPerLine[][];
-    private int totalNumberOfLines = 0;
 
     public void setNoOfLines(int noOfLines) {
         if (noOfLines >= 1 && noOfLines <= 3) {
@@ -34,10 +33,6 @@ public class Lottery {
 
     public void setMatches(int match, int linePosition) {
         matches[linePosition][0] = match;
-    }
-    
-    public void setTotalNumberOfLines(int total){
-         totalNumberOfLines += total;
     }
 
     public void createSecretNumbers() {
@@ -133,10 +128,6 @@ public class Lottery {
 
     public int getDuplicateInput() {
         return duplicateInput;
-    }
-    
-    public int getTotalNumberOfLines(){
-        return totalNumberOfLines;
     }
 
 }
