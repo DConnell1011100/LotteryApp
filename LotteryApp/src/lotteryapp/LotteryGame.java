@@ -133,6 +133,7 @@ public class LotteryGame {
         for(int i = 0; myLott[i] != null; i++){
             totalNumberOfLines += myLott[i].getNoOfLines();
         }
+        //GAME HISTORY
         System.out.println(" ");
         System.out.println("GAME SUMMARY: ");
         System.out.println("-----------------");
