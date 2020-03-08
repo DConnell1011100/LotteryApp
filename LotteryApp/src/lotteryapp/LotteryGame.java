@@ -43,10 +43,6 @@ public class LotteryGame {
             myLott[gameNo].createSecretNumbers();
             secretNumbers = myLott[gameNo].getSecretNumbers();
 
-            System.out.print("Lottery Numbers: ");
-            for (int i = 0; i < secretNumbers.length; i++) {
-                System.out.print(myLott[gameNo].getSecretNumbers()[i] + " ");
-            }
 
             userNumbers = new int[noOfLines][6];
             
