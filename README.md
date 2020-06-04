@@ -1,3 +1,6 @@
+# Download and Play!
+- In order to play you will need to compile both .java files and then run the main java class. For best use, run in your IDE or with TextPad.
+
 # LotteryApp
 - A simple Lottery app.
 - The app generates 6 unique random numbers between 1-40.
